@@ -1,6 +1,6 @@
 ﻿using com.etsoo.BaiduApi.Maps.Place;
+using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.BaiduApi.Options;
-using com.etsoo.BaiduApiModel.Maps.RQ;
 using com.etsoo.Utils.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

@@ -1,6 +1,6 @@
 ﻿using com.etsoo.BaiduApi.Maps;
+using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.BaiduApi.Options;
-using com.etsoo.BaiduApiModel.Maps.RQ;
 
 namespace BaiduApi.Tests
 {

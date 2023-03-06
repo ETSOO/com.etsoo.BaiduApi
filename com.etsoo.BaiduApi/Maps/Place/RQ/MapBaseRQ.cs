@@ -1,7 +1,7 @@
 ﻿using com.etsoo.ApiModel.Dto.Maps;
 using com.etsoo.ApiModel.RQ.Maps;
 
-namespace com.etsoo.BaiduApiModel.Maps.RQ
+namespace com.etsoo.BaiduApi.Maps.Place.RQ
 {
     /// <summary>
     /// Map base request data

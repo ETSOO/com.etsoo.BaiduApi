@@ -1,4 +1,4 @@
-﻿namespace com.etsoo.BaiduApiModel.Maps.RQ
+﻿namespace com.etsoo.BaiduApi.Maps.Place.RQ
 {
     /// <summary>
     /// Autocomplete request data

@@ -1,6 +1,6 @@
 ﻿using com.etsoo.ApiModel.Dto.Maps;
 
-namespace com.etsoo.BaiduApiModel.Maps.RQ
+namespace com.etsoo.BaiduApi.Maps.Place.RQ
 {
     /// <summary>
     /// Search place request data

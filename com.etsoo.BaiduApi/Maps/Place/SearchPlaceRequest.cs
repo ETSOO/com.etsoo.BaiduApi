@@ -1,4 +1,4 @@
-﻿using com.etsoo.BaiduApiModel.Maps.RQ;
+﻿using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.Utils.String;
 
 namespace com.etsoo.BaiduApi.Maps.Place
