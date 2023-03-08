@@ -1,5 +1,4 @@
 ﻿using com.etsoo.ApiModel.Dto.Maps;
-using CommonPlace = com.etsoo.ApiModel.Dto.Maps.Place;
 
 namespace com.etsoo.BaiduApi.Maps.Place
 {
@@ -59,9 +58,9 @@ namespace com.etsoo.BaiduApi.Maps.Place
         /// 创建通用地点
         /// </summary>
         /// <returns>Result</returns>
-        public CommonPlace CreateCommon()
+        public PlaceCommon CreateCommon()
         {
-            return new CommonPlace
+            return new PlaceCommon
             {
                 Name = Name,
                 Location = Location,

@@ -1,4 +1,5 @@
-﻿using com.etsoo.BaiduApi.Maps.Place;
+﻿using com.etsoo.ApiModel.Dto.Maps;
+using com.etsoo.BaiduApi.Maps.Place;
 using com.etsoo.BaiduApi.Maps.Place.RQ;
 
 namespace com.etsoo.BaiduApi.Maps
@@ -24,5 +25,13 @@ namespace com.etsoo.BaiduApi.Maps
         /// <param name="rq">Request data</param>
         /// <returns>Result</returns>
         Task<SearchPlaceResponse?> SearchPlaceAsync(SearchPlaceRQ rq);
+
+        /// <summary>
+        /// Async search common place
+        /// 异步查询通用地点
+        /// </summary>
+        /// <param name="rq">Request data</param>
+        /// <returns>Result</returns>
+        Task<IEnumerable<PlaceCommon>?> SearchCommonPlaceAsync(SearchPlaceRQ rq);
     }
 }

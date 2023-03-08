@@ -1,4 +1,5 @@
-﻿using com.etsoo.BaiduApi.Maps.Place;
+﻿using com.etsoo.ApiModel.Dto.Maps;
+using com.etsoo.BaiduApi.Maps.Place;
 using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.BaiduApi.Options;
 using com.etsoo.Utils.Serialization;
@@ -78,6 +79,21 @@ namespace com.etsoo.BaiduApi.Maps
             var api = $"place/search?{request.ToQuery()}";
 
             return await client.GetFromJsonAsync<SearchPlaceResponse>(api, jsonSerializerOptions);
+        }
+
+        /// <summary>
+        /// Async search common place
+        /// 异步查询通用地点
+        /// </summary>
+        /// <param name="rq">Request data</param>
+        /// <returns>Result</returns>
+        public async Task<IEnumerable<PlaceCommon>?> SearchCommonPlaceAsync(SearchPlaceRQ rq)
+        {
+            var response = await SearchPlaceAsync(rq);
+            var results = response?.Results;
+            if (results == null) return null;
+
+            return results.Select(item => item.CreateCommon());
         }
     }
 }

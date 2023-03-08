@@ -36,6 +36,22 @@ namespace BaiduApi.Tests
         }
 
         [TestMethod]
+        public async Task SearchCommonPlaceAsyncTest()
+        {
+            var result = await service.SearchCommonPlaceAsync(new SearchPlaceRQ
+            {
+                Query = "清溪路88号玫瑰庭院11号楼",
+                WithDetails = true
+            });
+            Assert.IsNotNull(result);
+
+            var first = result.First();
+            Assert.IsNotNull(first);
+
+            Assert.IsTrue(result.Any(result => result.City == "青岛市"));
+        }
+
+        [TestMethod]
         public async Task AutocompleteAsyncTest()
         {
             var response = await service.AutoCompleteAsync(new AutocompleteRQ
