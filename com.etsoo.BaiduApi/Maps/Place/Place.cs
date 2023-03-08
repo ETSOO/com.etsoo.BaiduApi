@@ -1,4 +1,5 @@
 ﻿using com.etsoo.ApiModel.Dto.Maps;
+using CommonPlace = com.etsoo.ApiModel.Dto.Maps.Place;
 
 namespace com.etsoo.BaiduApi.Maps.Place
 {
@@ -30,5 +31,47 @@ namespace com.etsoo.BaiduApi.Maps.Place
         public required string Address { get; init; }
         public string? Adcode { get; init; }
         public PlaceDetailInfo? DetailInfo { get; init; }
+
+        /// <summary>
+        /// Create autocomplete place
+        /// 创建自动填充地点
+        /// </summary>
+        /// <returns>Result</returns>
+        public PlaceAutocomplete CreateAutocomplete()
+        {
+            return new PlaceAutocomplete
+            {
+                Name = $"{Name}, {Address}",
+                PlaceId = Uid,
+                Place = new PlaceBase
+                {
+                    Location = Location,
+                    Region = "CN",
+                    State = Province,
+                    City = City,
+                    District = District ?? Area
+                }
+            };
+        }
+
+        /// <summary>
+        /// Create common place
+        /// 创建通用地点
+        /// </summary>
+        /// <returns>Result</returns>
+        public CommonPlace CreateCommon()
+        {
+            return new CommonPlace
+            {
+                Name = Name,
+                Location = Location,
+                PlaceId = Uid,
+                FormattedAddress = Address,
+                Region = "CN",
+                State = Province,
+                City = City,
+                District = District ?? Area
+            };
+        }
     }
 }
