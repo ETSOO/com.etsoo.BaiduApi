@@ -56,14 +56,15 @@ namespace com.etsoo.BaiduApi.Maps
         /// 异步自动填充
         /// </summary>
         /// <param name="rq">Request data</param>
+        /// <param name="token">Cancellation token</param>
         /// <returns>Result</returns>
-        public async Task<AutocompleteResponse?> AutoCompleteAsync(AutocompleteRQ rq)
+        public async Task<AutocompleteResponse?> AutoCompleteAsync(AutocompleteRQ rq, CancellationToken token = default)
         {
             var request = new AutocompleteRequest(options.ApiKey, rq);
 
             var api = $"place/suggestion?{request.ToQuery()}";
 
-            return await client.GetFromJsonAsync<AutocompleteResponse>(api, jsonSerializerOptions);
+            return await client.GetFromJsonAsync<AutocompleteResponse>(api, jsonSerializerOptions, token);
         }
 
         /// <summary>
@@ -71,14 +72,15 @@ namespace com.etsoo.BaiduApi.Maps
         /// 异步查询地点
         /// </summary>
         /// <param name="rq">Request data</param>
+        /// <param name="token">Cancellation token</param>
         /// <returns>Result</returns>
-        public async Task<SearchPlaceResponse?> SearchPlaceAsync(SearchPlaceRQ rq)
+        public async Task<SearchPlaceResponse?> SearchPlaceAsync(SearchPlaceRQ rq, CancellationToken token = default)
         {
             var request = new SearchPlaceRequest(options.ApiKey, rq);
 
             var api = $"place/search?{request.ToQuery()}";
 
-            return await client.GetFromJsonAsync<SearchPlaceResponse>(api, jsonSerializerOptions);
+            return await client.GetFromJsonAsync<SearchPlaceResponse>(api, jsonSerializerOptions, token);
         }
 
         /// <summary>
@@ -86,10 +88,11 @@ namespace com.etsoo.BaiduApi.Maps
         /// 异步查询通用地点
         /// </summary>
         /// <param name="rq">Request data</param>
+        /// <param name="token">Cancellation token</param>
         /// <returns>Result</returns>
-        public async Task<IEnumerable<PlaceCommon>?> SearchCommonPlaceAsync(SearchPlaceRQ rq)
+        public async Task<IEnumerable<PlaceCommon>?> SearchCommonPlaceAsync(SearchPlaceRQ rq, CancellationToken token = default)
         {
-            var response = await SearchPlaceAsync(rq);
+            var response = await SearchPlaceAsync(rq, token);
             var results = response?.Results;
             if (results == null) return null;
 
