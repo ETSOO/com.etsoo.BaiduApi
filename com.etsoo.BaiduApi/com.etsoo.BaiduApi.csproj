@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="com.etsoo.ApiModel" Version="1.0.14" />
+    <PackageReference Include="com.etsoo.ApiModel" Version="1.0.24" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
   </ItemGroup>
