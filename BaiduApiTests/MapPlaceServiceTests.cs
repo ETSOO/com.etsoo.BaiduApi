@@ -1,4 +1,5 @@
 ﻿using com.etsoo.BaiduApi.Maps;
+using com.etsoo.BaiduApi.Maps.Place;
 using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.BaiduApi.Options;
 
@@ -18,6 +19,23 @@ namespace BaiduApi.Tests
         }
 
         [TestMethod]
+        public async Task NoApiKeyTest()
+        {
+            var tempService = new MapPlaceService(new MapsOptions
+            {
+                ApiKey = string.Empty
+            }, new HttpClient());
+
+            var response = await tempService.SearchPlaceAsync(new SearchPlaceRQ
+            {
+                Query = "清溪路88号玫瑰庭院11号楼",
+                WithDetails = true
+            });
+            Assert.IsNotNull(response);
+            Assert.AreEqual(PlaceApiStatus.AKNotExists, response.Status);
+        }
+
+        [TestMethod]
         public async Task SearchPlaceAsyncTest()
         {
             var response = await service.SearchPlaceAsync(new SearchPlaceRQ
@@ -33,6 +51,18 @@ namespace BaiduApi.Tests
             Assert.IsTrue(response.Results.Any(result => result.City == "青岛市"));
 
             Assert.IsNotNull(first.DetailInfo);
+        }
+
+        [TestMethod]
+        public async Task SearchPlaceAsyncBadAddressTest()
+        {
+            var response = await service.SearchPlaceAsync(new SearchPlaceRQ
+            {
+                Query = "",
+                WithDetails = true
+            });
+            Assert.IsNotNull(response);
+            Assert.IsFalse(response.Results.Any());
         }
 
         [TestMethod]

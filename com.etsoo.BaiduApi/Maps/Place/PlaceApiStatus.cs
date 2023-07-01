@@ -11,6 +11,7 @@
         QuotaFailure = 4,
         AKFailure = 5,
         ParseProtoFailure = 8,
-        PermissionDenied = 9
+        PermissionDenied = 9,
+        AKNotExists = 101
     }
 }

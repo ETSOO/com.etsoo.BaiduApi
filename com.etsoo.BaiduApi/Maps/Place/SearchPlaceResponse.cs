@@ -6,6 +6,6 @@
     /// </summary>
     public record SearchPlaceResponse : BaseResponse
     {
-        public required IEnumerable<Place> Results { get; init; }
+        public IEnumerable<Place> Results { get; init; } = Enumerable.Empty<Place>();
     }
 }
