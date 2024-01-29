@@ -11,9 +11,13 @@ namespace com.etsoo.BaiduApi
     {
     }
 
+    /// <summary>
+    /// Baidu API call JSON serializer context
+    /// 百度API调用JSON序列化上下文
+    /// </summary>
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.SnakeCaseLower)]
     [JsonSerializable(typeof(Maps.Place.BaseResponse))]
-    internal partial class BaiduApiCallJsonSerializerContext : JsonSerializerContext
+    public partial class BaiduApiCallJsonSerializerContext : JsonSerializerContext
     {
     }
 }
