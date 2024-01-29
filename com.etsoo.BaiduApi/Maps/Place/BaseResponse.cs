@@ -1,9 +1,13 @@
-﻿namespace com.etsoo.BaiduApi.Maps.Place
+﻿using System.Text.Json.Serialization;
+
+namespace com.etsoo.BaiduApi.Maps.Place
 {
     /// <summary>
     /// Base response
     /// 基本响应
     /// </summary>
+    [JsonDerivedType(typeof(AutocompleteResponse))]
+    [JsonDerivedType(typeof(SearchPlaceResponse))]
     public record BaseResponse
     {
         /// <summary>

@@ -2,11 +2,9 @@
 using com.etsoo.BaiduApi.Maps.Place;
 using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.BaiduApi.Options;
-using com.etsoo.Utils.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace com.etsoo.BaiduApi.Maps
 {
@@ -16,12 +14,6 @@ namespace com.etsoo.BaiduApi.Maps
     /// </summary>
     public class MapPlaceService : IMapPlaceService
     {
-        private readonly JsonSerializerOptions jsonSerializerOptions = new()
-        {
-            PropertyNameCaseInsensitive= true,
-            PropertyNamingPolicy = new JsonSnakeNamingPolicy()
-        };
-
         private readonly MapsOptions options;
         private readonly HttpClient client;
 
@@ -64,7 +56,7 @@ namespace com.etsoo.BaiduApi.Maps
 
             var api = $"place/suggestion?{request.ToQuery()}";
 
-            return await client.GetFromJsonAsync<AutocompleteResponse>(api, jsonSerializerOptions, token);
+            return await client.GetFromJsonAsync(api, BaiduApiCallJsonSerializerContext.Default.AutocompleteResponse, token);
         }
 
         /// <summary>
@@ -80,7 +72,7 @@ namespace com.etsoo.BaiduApi.Maps
 
             var api = $"place/search?{request.ToQuery()}";
 
-            return await client.GetFromJsonAsync<SearchPlaceResponse>(api, jsonSerializerOptions, token);
+            return await client.GetFromJsonAsync(api, BaiduApiCallJsonSerializerContext.Default.SearchPlaceResponse, token);
         }
 
         /// <summary>

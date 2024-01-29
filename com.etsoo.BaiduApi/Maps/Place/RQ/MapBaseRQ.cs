@@ -1,5 +1,6 @@
 ﻿using com.etsoo.ApiModel.Dto.Maps;
 using com.etsoo.ApiModel.RQ.Maps;
+using System.Text.Json.Serialization;
 
 namespace com.etsoo.BaiduApi.Maps.Place.RQ
 {
@@ -7,6 +8,8 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
     /// Map base request data
     /// 地图基础请求数据
     /// </summary>
+    [JsonDerivedType(typeof(AutocompleteRQ))]
+    [JsonDerivedType(typeof(SearchPlaceRQ))]
     public abstract record MapBaseRQ
     {
         /// <summary>
