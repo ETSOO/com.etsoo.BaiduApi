@@ -71,16 +71,29 @@ namespace com.etsoo.BaiduApi.Maps.Place
                 pos = query.LastIndexOf(first);
                 if (pos == -1)
                 {
-                    formattedAddress = Name + formattedAddress;
+                    if (!formattedAddress.Contains(Name))
+                    {
+                        formattedAddress += Name;
+                    }
                 }
                 else
                 {
-                    formattedAddress += first + query[(pos + first.Length)..];
+                    if (!formattedAddress.Contains(first))
+                    {
+                        formattedAddress += first;
+                    }
+
+                    formattedAddress += query[(pos + first.Length)..];
                 }
             }
             else
             {
-                formattedAddress += Name + query[(pos + Name.Length)..];
+                if (!formattedAddress.Contains(Name))
+                {
+                    formattedAddress += Name;
+                }
+
+                formattedAddress += query[(pos + Name.Length)..];
             }
 
             return new PlaceCommon
