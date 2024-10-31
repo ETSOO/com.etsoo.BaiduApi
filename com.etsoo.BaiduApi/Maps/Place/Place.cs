@@ -57,19 +57,42 @@ namespace com.etsoo.BaiduApi.Maps.Place
         /// Create common place
         /// 创建通用地点
         /// </summary>
+        /// <param name="query">Original query</param>
         /// <returns>Result</returns>
-        public PlaceCommon CreateCommon()
+        public PlaceCommon CreateCommon(string query)
         {
+            var district = District ?? Area;
+            var formattedAddress = Address;
+
+            var pos = query.IndexOf(Name);
+            if (pos == -1)
+            {
+                var first = Name.Split('-')[0];
+                pos = query.IndexOf(first);
+                if (pos == -1)
+                {
+                    formattedAddress = Name + formattedAddress;
+                }
+                else
+                {
+                    formattedAddress += first + query[(pos + first.Length)..];
+                }
+            }
+            else
+            {
+                formattedAddress += Name + query[(pos + Name.Length)..];
+            }
+
             return new PlaceCommon
             {
                 Name = Name,
                 Location = Location,
                 PlaceId = Uid,
-                FormattedAddress = Address,
+                FormattedAddress = formattedAddress,
                 Region = "CN",
                 State = Province,
                 City = City,
-                District = District ?? Area
+                District = district
             };
         }
     }

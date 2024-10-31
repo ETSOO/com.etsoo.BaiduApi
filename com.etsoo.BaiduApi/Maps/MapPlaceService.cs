@@ -88,7 +88,7 @@ namespace com.etsoo.BaiduApi.Maps
             var results = response?.Results;
             if (results == null) return null;
 
-            return results.Select(item => item.CreateCommon());
+            return results.Select(item => item.CreateCommon(rq.Query));
         }
     }
 }
