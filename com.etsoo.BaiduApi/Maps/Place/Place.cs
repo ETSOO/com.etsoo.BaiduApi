@@ -64,11 +64,11 @@ namespace com.etsoo.BaiduApi.Maps.Place
             var district = District ?? Area;
             var formattedAddress = Address;
 
-            var pos = query.IndexOf(Name);
+            var pos = query.LastIndexOf(Name);
             if (pos == -1)
             {
                 var first = Name.Split('-')[0];
-                pos = query.IndexOf(first);
+                pos = query.LastIndexOf(first);
                 if (pos == -1)
                 {
                     formattedAddress = Name + formattedAddress;
