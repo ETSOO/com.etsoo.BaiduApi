@@ -7,7 +7,7 @@ namespace com.etsoo.BaiduApi.Maps.Place
     /// </summary>
     public record PlaceDetailInfo
     {
-        public required string Tag { get; init; }
+        public string? Tag { get; init; }
         public required string Type { get; init; }
         public required string DetailUrl { get; init; }
         public string? ShopHours { get; init; }

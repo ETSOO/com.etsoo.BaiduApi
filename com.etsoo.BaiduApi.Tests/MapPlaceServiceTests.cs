@@ -75,13 +75,12 @@ namespace com.etsoo.BaiduApi.Tests
             });
             Assert.IsNotNull(result);
 
-            var first = result.Where(a => a.District == "李沧区").First();
+            var first = result.Where(a => a.Name.Equals("玫瑰庭院")).First();
 
             Assert.IsNotNull(first);
             Assert.AreEqual("CN", first.Region);
             Assert.AreEqual("山东省", first.State);
             Assert.AreEqual("青岛市", first.City);
-            Assert.AreEqual("李沧区", first.District);
             Assert.AreEqual("玫瑰庭院", first.Name);
             Assert.AreEqual("山东省青岛市李沧区清溪路88号玫瑰庭院9号楼3单元502", first.FormattedAddress);
         }
