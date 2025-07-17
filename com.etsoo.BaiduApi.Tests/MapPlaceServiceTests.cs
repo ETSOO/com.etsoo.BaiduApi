@@ -107,6 +107,26 @@ namespace com.etsoo.BaiduApi.Tests
         }
 
         [TestMethod]
+        public async Task SearchCommonAsyncExample1Test()
+        {
+            var result = await service.SearchCommonPlaceAsync(new SearchPlaceRQ
+            {
+                Query = "广东省佛山市季华西路中国陶瓷总部基地中区E座",
+                WithDetails = true
+            });
+            Assert.IsNotNull(result);
+
+            var first = result.Where(a => a.City == "佛山市").First();
+
+            Assert.IsNotNull(first);
+            Assert.AreEqual("CN", first.Region);
+            Assert.AreEqual("广东省", first.State);
+            Assert.AreEqual("禅城区", first.District);
+            Assert.AreEqual("中国陶瓷产业总部基地中区", first.Name.Split('-')[0]);
+            Assert.AreEqual("佛山市禅城区广场东路中国陶瓷产业总部基地总部基地中区E座", first.FormattedAddress);
+        }
+
+        [TestMethod]
         public async Task AutocompleteAsyncTest()
         {
             var response = await service.AutoCompleteAsync(new AutocompleteRQ

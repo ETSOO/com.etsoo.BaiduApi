@@ -1,4 +1,5 @@
 ﻿using com.etsoo.ApiModel.Dto.Maps;
+using com.etsoo.Utils.String;
 
 namespace com.etsoo.BaiduApi.Maps.Place
 {
@@ -64,7 +65,9 @@ namespace com.etsoo.BaiduApi.Maps.Place
             var district = District ?? Area;
             var formattedAddress = Address;
 
-            var pos = query.LastIndexOf(Name);
+            var lcs = StringUtils.GetLCS(query, Name).ToString();
+
+            var pos = lcs.Length < 5 ? -1 : query.LastIndexOf(lcs);
             if (pos == -1)
             {
                 var first = Name.Split('-')[0];
@@ -88,12 +91,7 @@ namespace com.etsoo.BaiduApi.Maps.Place
             }
             else
             {
-                if (!formattedAddress.Contains(Name))
-                {
-                    formattedAddress += Name;
-                }
-
-                formattedAddress += query[(pos + Name.Length)..];
+                formattedAddress += query[pos..];
             }
 
             return new PlaceCommon
