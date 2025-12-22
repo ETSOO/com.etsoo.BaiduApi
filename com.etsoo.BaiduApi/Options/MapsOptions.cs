@@ -16,6 +16,6 @@
         /// API base address
         /// 接口基地址
         /// </summary>
-        public string BaseAddress { get; init; } = "https://api.map.baidu.com/place/v2/";
+        public string BaseAddress { get; init; } = "https://api.map.baidu.com/place/v3/";
     }
 }

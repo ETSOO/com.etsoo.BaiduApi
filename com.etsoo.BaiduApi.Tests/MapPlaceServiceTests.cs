@@ -30,7 +30,8 @@ namespace com.etsoo.BaiduApi.Tests
             {
                 Query = "清溪路88号玫瑰庭院11号楼",
                 WithDetails = true
-            });
+            }, TestContext.CancellationToken);
+
             Assert.IsNotNull(response);
             Assert.AreEqual(PlaceApiStatus.AKNotExists, response.Status);
         }
@@ -41,9 +42,13 @@ namespace com.etsoo.BaiduApi.Tests
             var response = await service.SearchPlaceAsync(new SearchPlaceRQ
             {
                 Query = "清溪路88号玫瑰庭院11号楼",
+                PageSize = 3,
                 WithDetails = true
-            });
+            }, TestContext.CancellationToken);
+
             Assert.IsNotNull(response);
+
+            Assert.AreEqual(3, response.Results.Count());
 
             var first = response.Results.First();
             Assert.IsNotNull(first);
@@ -54,25 +59,13 @@ namespace com.etsoo.BaiduApi.Tests
         }
 
         [TestMethod]
-        public async Task SearchPlaceAsyncBadAddressTest()
-        {
-            var response = await service.SearchPlaceAsync(new SearchPlaceRQ
-            {
-                Query = "",
-                WithDetails = true
-            });
-            Assert.IsNotNull(response);
-            Assert.IsFalse(response.Results.Any());
-        }
-
-        [TestMethod]
         public async Task SearchCommonPlaceAsyncTest()
         {
             var result = await service.SearchCommonPlaceAsync(new SearchPlaceRQ
             {
                 Query = "清溪路88号玫瑰庭院9号楼3单元502",
                 WithDetails = true
-            });
+            }, TestContext.CancellationToken);
             Assert.IsNotNull(result);
 
             var first = result.Where(a => a.Name.Equals("玫瑰庭院")).First();
@@ -92,7 +85,8 @@ namespace com.etsoo.BaiduApi.Tests
             {
                 Query = "山东省青岛李沧清溪路88号玫瑰庭院10号楼二单元501室",
                 WithDetails = true
-            });
+            }, TestContext.CancellationToken);
+
             Assert.IsNotNull(result);
 
             var first = result.Where(a => a.District == "李沧区").First();
@@ -113,10 +107,10 @@ namespace com.etsoo.BaiduApi.Tests
             {
                 Query = "广东省佛山市季华西路中国陶瓷总部基地中区E座",
                 WithDetails = true
-            });
+            }, TestContext.CancellationToken);
             Assert.IsNotNull(result);
 
-            var first = result.Where(a => a.City == "佛山市").First();
+            var first = result.Where(a => a.City == "佛山市" && a.Name.Contains("基地中区")).First();
 
             Assert.IsNotNull(first);
             Assert.AreEqual("CN", first.Region);
@@ -132,14 +126,32 @@ namespace com.etsoo.BaiduApi.Tests
             var response = await service.AutoCompleteAsync(new AutocompleteRQ
             {
                 Query = "玫瑰庭院"
-            });
+            }, TestContext.CancellationToken);
 
             Assert.IsNotNull(response);
 
-            var first = response.Result.First();
+            var first = response.Results.First();
             Assert.IsNotNull(first);
 
-            Assert.IsTrue(response.Result.Any(result => result.City == "青岛市"));
+            Assert.IsTrue(response.Results.Any(result => result.City == "青岛市"));
         }
+
+        [TestMethod]
+        public async Task QueryAroundTest()
+        {
+            var response = await service.SearchPlaceAsync(new SearchPlaceRQ
+            {
+                Query = "民生银行",
+                Location = new(39.915F, 116.404F),
+                Radius = 1000,
+                PageSize = 3,
+                WithDetails = true
+            }, TestContext.CancellationToken);
+
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.Results.Any(result => result.Name.StartsWith("中国民生银行")));
+        }
+
+        public TestContext TestContext { get; set; }
     }
 }

@@ -6,6 +6,6 @@
     /// </summary>
     public record AutocompleteResponse : BaseResponse
     {
-        public required IEnumerable<Place> Result { get; init; }
+        public required IEnumerable<Place> Results { get; init; }
     }
 }

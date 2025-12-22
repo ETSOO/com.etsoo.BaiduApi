@@ -5,7 +5,7 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
 {
     /// <summary>
     /// Search place request data
-    /// https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-placeapi
+    /// https://lbsyun.baidu.com/faq/api?title=webapi/guide/webservice-placeapiV3/interfaceDocumentV3
     /// </summary>
     public record SearchPlaceRQ : MapBaseRQ
     {
@@ -21,7 +21,8 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
                 Output = rq.Output,
                 Query = rq.Query,
                 Location= rq.Location,
-                Radius = rq.Radius
+                Radius = rq.Radius,
+                PageSize = (rq.PageSize is >= 1 and <= 20) ? rq.PageSize : null
             };
         }
 
@@ -63,7 +64,7 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
 
         /// <summary>
         /// Page size
-        /// 单次召回POI数量
+        /// 单次请求POI数量
         /// </summary>
         public int? PageSize { get; init; }
 

@@ -4,7 +4,7 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
 {
     /// <summary>
     /// Autocomplete request data
-    /// https://lbsyun.baidu.com/index.php?title=webapi/place-suggestion-api
+    /// https://lbsyun.baidu.com/faq/api?title=webapi/guide/webservice-placeapiV3/interfaceDocumentV3
     /// </summary>
     public record AutocompleteRQ : MapBaseRQ
     {

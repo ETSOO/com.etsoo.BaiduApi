@@ -54,7 +54,7 @@ namespace com.etsoo.BaiduApi.Maps
         {
             var request = new AutocompleteRequest(options.ApiKey, rq);
 
-            var api = $"place/suggestion?{request.ToQuery()}";
+            var api = $"suggestion?{request.ToQuery()}";
 
             return await client.GetFromJsonAsync(api, BaiduApiCallJsonSerializerContext.Default.AutocompleteResponse, token);
         }
@@ -70,7 +70,9 @@ namespace com.etsoo.BaiduApi.Maps
         {
             var request = new SearchPlaceRequest(options.ApiKey, rq);
 
-            var api = $"place/search?{request.ToQuery()}";
+            var method = rq.Bounds?.Any() is true ? "polygon" : (rq.Location != null && rq.Radius != null ? "around" : "region");
+
+            var api = $"{method}?{request.ToQuery()}";
 
             return await client.GetFromJsonAsync(api, BaiduApiCallJsonSerializerContext.Default.SearchPlaceResponse, token);
         }
