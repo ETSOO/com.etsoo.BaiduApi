@@ -1,4 +1,5 @@
-﻿using com.etsoo.BaiduApi.Maps;
+﻿using com.etsoo.ApiModel.RQ.Maps;
+using com.etsoo.BaiduApi.Maps;
 using com.etsoo.BaiduApi.Maps.Place;
 using com.etsoo.BaiduApi.Maps.Place.RQ;
 using com.etsoo.BaiduApi.Options;
@@ -150,6 +151,22 @@ namespace com.etsoo.BaiduApi.Tests
 
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Results.Any(result => result.Name.StartsWith("中国民生银行")));
+        }
+
+        [TestMethod]
+        public async Task LanguageSpecifiedTest()
+        {
+            var rq = new PlaceQueryRQ
+            {
+                Query = "青岛数码科技中心-A座1008室",
+                PageSize = 3,
+                Language = "zh-Hans"
+            };
+
+            var results = await service.SearchCommonPlaceAsync(SearchPlaceRQ.CreateFrom(rq), TestContext.CancellationToken);
+            
+            Assert.IsNotNull(results);
+            Assert.AreEqual(3, results.Count());
         }
 
         public TestContext TestContext { get; set; }

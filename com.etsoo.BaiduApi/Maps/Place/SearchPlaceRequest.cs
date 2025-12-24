@@ -49,6 +49,7 @@ namespace com.etsoo.BaiduApi.Maps.Place
             if (rq.PageNum.HasValue) Parameters["page_num"] = rq.PageNum.Value.ToString();
             if (rq.PhotoShow.HasValue) Parameters["photo_show"] = rq.PhotoShow.ToJson();
             if (rq.AddressResult.HasValue) Parameters["address_result"] = rq.AddressResult.ToJson();
+            if (!string.IsNullOrEmpty(rq.FromLanguage)) Parameters["from_language"] = rq.FromLanguage;
         }
     }
 }

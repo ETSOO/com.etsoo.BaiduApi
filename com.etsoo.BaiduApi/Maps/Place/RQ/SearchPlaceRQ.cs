@@ -22,6 +22,7 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
                 Query = rq.Query,
                 Location= rq.Location,
                 Radius = rq.Radius,
+                FromLanguage = rq.Language,
                 PageSize = (rq.PageSize is >= 1 and <= 20) ? rq.PageSize : null
             };
         }
@@ -85,5 +86,11 @@ namespace com.etsoo.BaiduApi.Maps.Place.RQ
         /// 若不传入该字段，默认召回门址数据，仅当address_result=false时，召回相应的POI数据
         /// </summary>
         public bool? AddressResult { get; init; }
+
+        /// <summary>
+        /// Query's language, supports different languages as input, default is Chinese, can be set to auto
+        /// query的语言类型，支持不同语言的检索词作为入参，不填默认为中文，可以设置为auto
+        /// </summary>
+        public string? FromLanguage { get; init; }
     }
 }
