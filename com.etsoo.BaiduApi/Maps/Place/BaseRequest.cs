@@ -13,7 +13,7 @@ namespace com.etsoo.BaiduApi.Maps.Place
         /// Parameters
         /// 参数
         /// </summary>
-        protected readonly Dictionary<string, string> Parameters = new();
+        protected readonly Dictionary<string, string> Parameters = [];
 
         /// <summary>
         /// Constructor

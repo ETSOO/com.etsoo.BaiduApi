@@ -10,12 +10,12 @@
         /// API key
         /// 接口密钥
         /// </summary>
-        public required string ApiKey { get; init; }
+        public required string ApiKey { get; set; }
 
         /// <summary>
         /// API base address
         /// 接口基地址
         /// </summary>
-        public string BaseAddress { get; init; } = "https://api.map.baidu.com/place/v3/";
+        public string BaseAddress { get; set; } = "https://api.map.baidu.com/place/v3/";
     }
 }
